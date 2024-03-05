@@ -16,9 +16,9 @@ export default async function Slider(props: any) {
       {props.data.map((data: any, index: number) => {
         return (
           <SwiperSlide key={index}>
-            <div className="flex flex-col">
-              <img src={data.url} alt={data.name} className="object-cover" />
-              <div className="m-8 text-5xl text-center">
+            <div className="flex flex-col h-full w-full">
+              <img src={data.url} alt={data.name} className="object-fill h-3/4 w-full"/>
+              <div className="flex text-5xl text-center h-1/4 items-center justify-center">
                 <label>{data.name}</label>
               </div>
             </div>
