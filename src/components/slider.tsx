@@ -10,7 +10,6 @@ import "swiper/css";
 import "../styles/slider.css";
 
 export default async function Slider(props: any) {
-  console.log("data slider", props.data);
   return (
     <Swiper effect={"cards"} grabCursor={true} modules={[EffectCards]} className="mySwiper h-full w-full rounded-2xl">
       {props.data.map((data: any, index: number) => {
