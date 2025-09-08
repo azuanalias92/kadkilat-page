@@ -7,9 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pages:build": "npx @cloudflare/next-on-pages",
-    "preview": "npm run pages:build && wrangler pages dev .vercel/output/static",
-    "deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static"
+    "type-check": "tsc --noEmit",
+    "pages:build": "npm run lint && npm run type-check && npx @cloudflare/next-on-pages",
+    "pages:build:ci": "npx @cloudflare/next-on-pages",
+    "preview": "npm run pages:build && wrangler pages dev .vercel/output/static --port 8788",
+    "deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static",
+    "deploy:production": "npm run pages:build && wrangler pages deploy .vercel/output/static --env production",
+    "cf:login": "wrangler auth login",
+    "cf:whoami": "wrangler auth whoami"
   },
   "dependencies": {
     "next": "14.1.0",

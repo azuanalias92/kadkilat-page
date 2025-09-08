@@ -1,0 +1,45 @@
+name = "kadkilat-page"
+compatibility_date = "2024-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+name = "kadkilat-page"
+route = { pattern = "kadkilat-page.pages.dev", custom_domain = true }
+
+[env.preview]
+name = "kadkilat-page-preview"
+
+# Pages configuration
+[build]
+command = "npm run pages:build"
+destination = ".vercel/output/static"
+
+# Environment variables (these will be set in Cloudflare dashboard)
+[vars]
+# API = "your-api-endpoint-here"
+
+# KV Namespaces (if needed)
+# [[kv_namespaces]]
+# binding = "MY_KV"
+# id = "your-kv-namespace-id"
+# preview_id = "your-preview-kv-namespace-id"
+
+# D1 Databases (if needed)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "your-database-name"
+# database_id = "your-database-id"
+
+# R2 Buckets (if needed)
+# [[r2_buckets]]
+# binding = "MY_BUCKET"
+# bucket_name = "your-bucket-name"
+
+# Functions configuration
+[functions]
+# Custom headers for all routes
+[[functions."*".headers]]
+"X-Frame-Options" = "DENY"
+"X-Content-Type-Options" = "nosniff"
+"Referrer-Policy" = "strict-origin-when-cross-origin"
+"Permissions-Policy" = "camera=(), microphone=(), geolocation=()"
