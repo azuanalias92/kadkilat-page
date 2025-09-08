@@ -14,6 +14,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy to Cloudflare Pages
+    permissions:
+      contents: read
+      deployments: write   
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,12 +47,6 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: kadkilat-page
           directory: .vercel/output/static
-          # Optional: Use wrangler-version to specify a specific version of wrangler to use
-          # wrangler-version: '3'
-          # Optional: Change the working directory
-          # workingDirectory: my-site
-          # Optional: Change the Git branch
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create deployment summary
         run: |
